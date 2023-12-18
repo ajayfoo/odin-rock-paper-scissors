@@ -64,7 +64,7 @@ function playRound() {
     }
 }
 
-function game() {
+function beginGame() {
     const NUM_ROUNDS = 5;
     let playerScore = 0;
     let computerScore = 0;
