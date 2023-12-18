@@ -8,44 +8,56 @@ function getComputerChoice() {
 }
 
 function beginGameRound(playerChoice, computerChoice) {
-    playerChoice = playerChoice.toLowerCase();
-    computerChoice = computerChoice.toLowerCase();
     if (playerChoice === computerChoice) {
-        return 'I\'s a TIE';
+        return 0;
     }
-    let result;
     switch (playerChoice) {
         case 'rock':
             {
                 // computer's choice can either be scissors or paper
                 if (computerChoice === 'scissors') {
-                    result = 'You won, rock beats scissors';
+                    return 1;
                 } else {
-                    result = 'You lost, paper beats rock';
+                    return -1;
                 }
-                break;
             }
         case 'paper':
             {
                 // computer's choice can either be rock or scissors
                 if (computerChoice === 'rock') {
-                    result = 'You won, paper beats rock';
+                    return 1;
                 } else {
-                    result = 'You lost, scissors beats paper';
+                    return -1;
                 }
-                break;
             }
         case 'scissors':
             {
                 // computer's choice can either be paper or rock
                 if (computerChoice === 'paper') {
-                    result = 'You won, scissors beats paper';
+                    return 1;
                 } else {
-                    result = 'You lost, rock beats scissors';
+                    return -1;
                 }
-                break;
             }
 
     }
-    return result;
+    throw 'InvalidValue';
+}
+
+function playRound() {
+    let playerChoice;
+    let result;
+    let computerChoice;
+    while (true) {
+        playerChoice = prompt("Enter 'rock', 'paper' or 'scissors'").toLowerCase();
+        computerChoice = getComputerChoice().toLowerCase();
+        result = beginGameRound(playerChoice, computerChoice);
+        if (result !== 0) break;
+        console.log(`It's a TIE, ${playerChoice} - ${computerChoice}, will replay the round`);
+    }
+    if (result === 1) {
+        console.log(`You've won, ${playerChoice} beats ${computerChoice}`);
+    } else {
+        console.log(`You've lost, ${computerChoice} beats ${playerChoice}`);
+    }
 }
