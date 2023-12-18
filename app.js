@@ -57,7 +57,24 @@ function playRound() {
     }
     if (result === 1) {
         console.log(`You've won, ${playerChoice} beats ${computerChoice}`);
+        return true;
     } else {
         console.log(`You've lost, ${computerChoice} beats ${playerChoice}`);
+        return false;
+    }
+}
+
+function game() {
+    const NUM_ROUNDS = 5;
+    let playerScore = 0;
+    let computerScore = 0;
+    for (let round = 0; round < NUM_ROUNDS; ++round) {
+        console.log("Round No." + (round + 1));
+        playRound() ? ++playerScore : ++computerScore;
+    }
+    if (playerScore > computerScore) {
+        console.log("You've won the game. You: " + playerScore + ", Computer: " + computerScore);
+    } else {
+        console.log("You've lost the game. You: " + playerScore + ", Computer: " + computerScore);
     }
 }
