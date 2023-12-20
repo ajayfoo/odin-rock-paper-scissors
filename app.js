@@ -47,6 +47,8 @@ function beginGameRound(playerChoice, computerChoice) {
 
 const choices = document.querySelector('.choices');
 const roundResultElem = document.getElementById('round-result');
+const scoreElem = document.getElementById('score');
+const resultElem = document.getElementById('result');
 
 function playRound(playerChoice) {
     const computerChoice = getComputerChoice().toLowerCase();
