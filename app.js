@@ -63,18 +63,3 @@ function playRound() {
         return false;
     }
 }
-
-function beginGame() {
-    const NUM_ROUNDS = 5;
-    let playerScore = 0;
-    let computerScore = 0;
-    for (let round = 0; round < NUM_ROUNDS; ++round) {
-        console.log("Round No." + (round + 1));
-        playRound() ? ++playerScore : ++computerScore;
-    }
-    if (playerScore > computerScore) {
-        console.log("You've won the game. You: " + playerScore + ", Computer: " + computerScore);
-    } else {
-        console.log("You've lost the game. You: " + playerScore + ", Computer: " + computerScore);
-    }
-}
