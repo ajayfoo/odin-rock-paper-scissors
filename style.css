@@ -48,3 +48,11 @@ body {
     font-size: 60px;
     margin: 20px 0 0;
 }
+
+#result {
+    font-size: 20px;
+    padding: 20px;
+    text-align: center;
+    margin: 20px;
+    background-color: moccasin;
+}

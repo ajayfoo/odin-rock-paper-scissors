@@ -45,11 +45,23 @@ function beginGameRound(playerChoice, computerChoice) {
 }
 
 
-const choices = document.querySelector('.choices');
+const choicesElem = document.querySelector('.choices');
 const roundResultElem = document.getElementById('round-result');
 const scoreElem = document.getElementById('score');
 const resultElem = document.getElementById('result');
+const playerScoreElem = document.getElementById('score-player');
+const computerScoreElem = document.getElementById('score-computer');
+let playerScore = 0;
+let computerScore = 0;
 
+function checkAndDisplayResult() {
+    if (playerScore >= 5) {
+        resultElem.textContent = "You've won the game";
+    }
+    else if (computerScore >= 5) {
+        resultElem.textContent = 'Computer has won the game';
+    }
+}
 function playRound(playerChoice) {
     const computerChoice = getComputerChoice().toLowerCase();
     const result = beginGameRound(playerChoice, computerChoice);
@@ -57,12 +69,15 @@ function playRound(playerChoice) {
         roundResultElem.textContent = `It's a TIE, ${playerChoice} - ${computerChoice}, will replay the round`;
     }
     else if (result === 1) {
-        roundResultElem.textContent = `You've won, ${playerChoice} beats ${computerChoice}`;
+        roundResultElem.textContent = `You've won the round, ${playerChoice} beats ${computerChoice}`;
+        playerScoreElem.textContent = ++playerScore;
     } else {
-        roundResultElem.textContent = `You've lost, ${computerChoice} beats ${playerChoice}`;
+        roundResultElem.textContent = `You've lost the round, ${computerChoice} beats ${playerChoice}`;
+        computerScoreElem.textContent = ++computerScore;
     }
+    checkAndDisplayResult();
 }
 
-choices.addEventListener('click', (event) => {
+choicesElem.addEventListener('click', (event) => {
     playRound(event.target.id);
 })
