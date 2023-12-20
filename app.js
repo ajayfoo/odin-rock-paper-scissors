@@ -51,22 +51,25 @@ const scoreElem = document.getElementById('score');
 const resultElem = document.getElementById('result');
 const playerScoreElem = document.getElementById('score-player');
 const computerScoreElem = document.getElementById('score-computer');
+const playAgainBtn = document.getElementById('play-again');
 let playerScore = 0;
 let computerScore = 0;
 
 function checkAndDisplayResult() {
     if (playerScore >= 5) {
         resultElem.textContent = "You've won the game";
+        resultElem.style.display = 'block';
     }
     else if (computerScore >= 5) {
         resultElem.textContent = 'Computer has won the game';
+        resultElem.style.display = 'block';
     }
 }
 function playRound(playerChoice) {
     const computerChoice = getComputerChoice().toLowerCase();
     const result = beginGameRound(playerChoice, computerChoice);
     if (result === 0) {
-        roundResultElem.textContent = `It's a TIE, ${playerChoice} - ${computerChoice}, will replay the round`;
+        roundResultElem.textContent = `It's a TIE, ${playerChoice} - ${computerChoice}`;
     }
     else if (result === 1) {
         roundResultElem.textContent = `You've won the round, ${playerChoice} beats ${computerChoice}`;
@@ -75,9 +78,32 @@ function playRound(playerChoice) {
         roundResultElem.textContent = `You've lost the round, ${computerChoice} beats ${playerChoice}`;
         computerScoreElem.textContent = ++computerScore;
     }
-    checkAndDisplayResult();
+}
+function checkAndSetupGame() {
+    if (playerScore === 0 && computerScore === 0) {
+        roundResultElem.style.display = 'block';
+    }
+}
+function resetGame() {
+    playerScore = 0;
+    computerScore = 0;
+    playerScoreElem.textContent = 0;
+    computerScoreElem.textContent = 0;
+    resultElem.style.display = 'none';
+    roundResultElem.style.display = 'none';
+}
+
+function isGameOver() {
+    return playerScore >= 5 || computerScore >= 5;
 }
 
 choicesElem.addEventListener('click', (event) => {
+    if (isGameOver()) return;
+    checkAndSetupGame();
     playRound(event.target.id);
-})
+    checkAndDisplayResult();
+});
+
+playAgainBtn.addEventListener('click', (event) => {
+    resetGame();
+});

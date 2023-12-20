@@ -33,6 +33,7 @@ body {
 }
 
 #round-result {
+    display: none;
     font-size: 17px;
     padding: 20px;
     text-align: center;
@@ -50,9 +51,19 @@ body {
 }
 
 #result {
+    display: none;
     font-size: 20px;
     padding: 20px;
     text-align: center;
     margin: 20px;
     background-color: moccasin;
+}
+
+#play-again {
+    display: block;
+    margin: 0 auto;
+    font-size: 17px;
+    border: solid burlywood 2px;
+    padding: 10px;
+    border-radius: 7px;
 }
