@@ -1,0 +1,37 @@
+html {
+    box-sizing: border-box;
+}
+
+*,
+*::before,
+*::after {
+    box-sizing: inherit;
+}
+
+html {
+    background-color: mistyrose;
+    font-size: 14px;
+}
+
+body {
+    margin: 0;
+}
+
+.choices {
+    display: flex;
+    justify-content: center;
+}
+
+.choices button {
+    font-size: 20px;
+    margin: 20px;
+    min-height: 100px;
+    min-width: 100px;
+}
+
+#round-result {
+    font-size: 17px;
+    text-align: center;
+    margin: 20px;
+    background-color: thistle;
+}

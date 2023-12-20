@@ -44,22 +44,23 @@ function beginGameRound(playerChoice, computerChoice) {
     throw 'InvalidValue';
 }
 
-function playRound() {
-    let playerChoice;
-    let result;
-    let computerChoice;
-    while (true) {
-        playerChoice = prompt("Enter 'rock', 'paper' or 'scissors'").toLowerCase();
-        computerChoice = getComputerChoice().toLowerCase();
-        result = beginGameRound(playerChoice, computerChoice);
-        if (result !== 0) break;
-        console.log(`It's a TIE, ${playerChoice} - ${computerChoice}, will replay the round`);
+
+const choices = document.querySelector('.choices');
+const roundResultElem = document.getElementById('round-result');
+
+function playRound(playerChoice) {
+    const computerChoice = getComputerChoice().toLowerCase();
+    const result = beginGameRound(playerChoice, computerChoice);
+    if (result === 0) {
+        roundResultElem.textContent = `It's a TIE, ${playerChoice} - ${computerChoice}, will replay the round`;
     }
-    if (result === 1) {
-        console.log(`You've won, ${playerChoice} beats ${computerChoice}`);
-        return true;
+    else if (result === 1) {
+        roundResultElem.textContent = `You've won, ${playerChoice} beats ${computerChoice}`;
     } else {
-        console.log(`You've lost, ${computerChoice} beats ${playerChoice}`);
-        return false;
+        roundResultElem.textContent = `You've lost, ${computerChoice} beats ${playerChoice}`;
     }
 }
+
+choices.addEventListener('click', (event) => {
+    playRound(event.target.id);
+})
