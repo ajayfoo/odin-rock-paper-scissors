@@ -32,6 +32,10 @@ body {
     border-radius: 20px;
 }
 
+.choices button:active {
+    background-color: ivory;
+}
+
 #round-result {
     display: none;
     font-size: 17px;
@@ -66,4 +70,8 @@ body {
     border: solid burlywood 2px;
     padding: 10px;
     border-radius: 7px;
+}
+
+#play-again:active {
+    background-color: ivory;
 }
